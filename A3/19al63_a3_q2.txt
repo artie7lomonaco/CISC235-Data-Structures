@@ -1,0 +1,31 @@
+2 Hashing for URL Retrieval:
+
+Given 10000 URL visit records from websites, the hashing_based method that we can quickly
+retrieve URLs, I will be using a closed hash table. The reason as to why I am using a closed hash
+table is because, for one, it is generally faster than the open hash table, since it has max O(n) complexity while the latter
+has O(n) for inserting and get. We are not getting any more addresses, therefore we don't need to increase the size to over 10000.
+
+For the input/output of the data structure, the input would be a set containing the 10000 visit records, and
+since we want to return some of the most visited websites, we can return a list containing a certain amount of
+websites. Another input can be a number of the most visited websites, so if we input 10, it will output the
+10 most visited websites of the 10000 visited. When we process the input, the key would be the website visited,
+and the value would be the number of times a URLaddress has been visited.
+
+When the empty array with 10000 spaces to be filled is created in the function, we would use the hash function to
+store the values. As learned in java before, it is possible to get a unique value for each string. Since there is a high
+chance that websites have been visited the same amount of times, we can base the hashFunc on a unique int that is
+generated from different strings of website names then %100 (modulus 100) for the bucket numbers. Each bucket will have
+a unique value and not True or False, that way collision is avoided.
+
+Now for the extraction of the array of size n that the user specifies, which will try to keep at O(n) complexity. First will
+create an array of size n where the websites with most visits will be put. As the function goes through the hash, the
+array will be updated accordingly:
+    - the max value will always be the first element in the array, (if there are an equal value(s) will be put after
+    due to the indexing in the hash table)
+    - if element is added to the array, the smaller elements will be shifted down and/or removed if the index surpasses
+    size n
+    - once it goes through the whole hash table, returns the resulting list
+    - complexity will be greatly affected if you are looking for an array with a large value of n websites
+The search can be used with double hashing to speed the process up. The first hash function will be working at
+mod 2 and the other at mod 10000
+
